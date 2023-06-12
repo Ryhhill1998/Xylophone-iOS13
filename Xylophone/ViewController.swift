@@ -7,18 +7,29 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
+    
+    var player: AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    func playSound(key: String) {
+        guard let url = Bundle.main.url(forResource: "C", withExtension: "wav") else { return }
+        player = try! AVAudioPlayer(contentsOf: url)
+        guard let player = player else { return }
+        player.play()
+    }
 
     @IBAction func keyPressed(_ sender: UIButton) {
-        print("I got pressed")
+        guard let label = sender.titleLabel else { return }
+        
+        guard let labelText = label.text else { return }
+        
+        playSound(key: labelText)
     }
-    
-
 }
 
