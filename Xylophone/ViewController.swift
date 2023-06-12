@@ -25,11 +25,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func keyPressed(_ sender: UIButton) {
-        guard let label = sender.titleLabel else { return }
-        
-        guard let labelText = label.text else { return }
-        
-        playSound(key: labelText)
+        playSound(key: sender.currentTitle!)
     }
 }
 
